@@ -4,7 +4,7 @@ using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _maxHealth = 100f;
@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour
 
 
     Vector2 _moveDirection;
+    public Vector2 MoveDirection => _moveDirection;
 
-    private void Awake()
+    protected override void Awake()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
-  _maxHealth: 2
+  _maxHealth: 1
   _animator: {fileID: 2063637891063028865}
   _player: {fileID: 0}
 --- !u!1 &8428989421388236472
