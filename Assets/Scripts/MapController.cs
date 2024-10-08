@@ -30,6 +30,7 @@ public class MapContoller : Singleton<MapContoller>
         _noTerrainPosition = new Vector3[3];
 
         SpawnChunk2();
+        InvokeRepeating(nameof(ChunkOptimizer), 1f, 1f);
     }
 
 
@@ -61,28 +62,55 @@ public class MapContoller : Singleton<MapContoller>
         xCheckCoord[1] = 0;
         xCheckCoord[2] = 24;
     }
-    else if (playerMoveDirection.x > 0)
+    else if (playerMoveDirection.x > 0 && playerMoveDirection.y == 0)
     {
         xCheckCoord[0] = xCheckCoord[1] = xCheckCoord[2] = 24;
     }
-    else
+    else if (playerMoveDirection.x < 0 && playerMoveDirection.y == 0)
     {
         xCheckCoord[0] = xCheckCoord[1] = xCheckCoord[2] = -24;
     }
-
+    else if (playerMoveDirection.x > 0 && playerMoveDirection.y >0)
+    {
+        xCheckCoord[0] = 0;
+        xCheckCoord[1] = xCheckCoord[2] = 24;
+            yCheckCoord[0] = yCheckCoord[1] = 24;
+            yCheckCoord[2] = 0;
+    }
+    else if (playerMoveDirection.x < 0 && playerMoveDirection.y >0)
+    {
+        xCheckCoord[0] = 0;
+        xCheckCoord[1] = xCheckCoord[2] = -24;
+            yCheckCoord[0] = yCheckCoord[1] = 24;
+            yCheckCoord[2] = 0;
+    }
     if (playerMoveDirection.y == 0)
     {
         yCheckCoord[0] = -24;
         yCheckCoord[1] = 0;
         yCheckCoord[2] = 24;
     }
-    else if (playerMoveDirection.y > 0)
+    else if (playerMoveDirection.y > 0 && playerMoveDirection.x == 0)
     {
         yCheckCoord[0] = yCheckCoord[1] = yCheckCoord[2] = 24;
     }
-    else
+    else if (playerMoveDirection.y < 0 && playerMoveDirection.x == 0)
     {
         yCheckCoord[0] = yCheckCoord[1] = yCheckCoord[2] = -24;
+    }
+    else if (playerMoveDirection.x > 0 && playerMoveDirection.y <0)
+    {
+        xCheckCoord[0] = 0;
+        xCheckCoord[1] = xCheckCoord[2] = 24;
+            yCheckCoord[0] = yCheckCoord[1] = -24;
+            yCheckCoord[2] = 0;
+    }
+    else if (playerMoveDirection.x < 0 && playerMoveDirection.y <0)
+    {
+        xCheckCoord[0] = 0;
+        xCheckCoord[1] = xCheckCoord[2] = -24;
+            yCheckCoord[0] = yCheckCoord[1] = -24;
+            yCheckCoord[2] = 0;
     }
 
 
@@ -145,6 +173,15 @@ public class MapContoller : Singleton<MapContoller>
         latestChunk3.transform.SetParent(transform);
 
         _activeChunks.Add(latestChunk3);
+    }
+
+    private void ChunkOptimizer()
+    {
+        foreach (var chunk in _activeChunks)
+        {
+            distanceFromChunk = Vector3.Distance(PlayerController.Instance.transform.position, chunk.transform.position);
+            chunk.SetActive(distanceFromChunk < maxDistanceFromChunk);
+        }
     }
 
     private void OnDrawGizmos()
