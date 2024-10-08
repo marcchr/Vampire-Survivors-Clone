@@ -77,6 +77,9 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine(DeathAnim());
             _spawner.ReturnEnemyToPool(this);
+
+            var coin = GemSpawner.Instance.GetGem();
+            coin.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0f);
         }
             
     }
