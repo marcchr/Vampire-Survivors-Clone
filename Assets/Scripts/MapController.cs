@@ -7,25 +7,29 @@ using Random = UnityEngine.Random;
 
 public class MapContoller : Singleton<MapContoller>
 {
-    [SerializeField] GameObject _terrainChunk;
+    [SerializeField] GameObject[] _terrainChunk;
     [SerializeField] float _checkerRadius;
     [SerializeField] LayerMask _terrainMask;
     [SerializeField] float maxDistanceFromChunk;
 
     public GameObject currentChunk;
 
-    Vector3 _noTerrainPosition;
+    Vector3[] _noTerrainPosition;
     Vector3 playerMoveDirection;
 
     List<GameObject> _activeChunks = new();
-    GameObject latestChunk;
+    GameObject latestChunk1;
+    GameObject latestChunk2;
+    GameObject latestChunk3;
 
     float distanceFromChunk;
 
 
     private void Start()
     {
-        SpawnChunk();
+        _noTerrainPosition = new Vector3[3];
+
+        SpawnChunk2();
     }
 
 
@@ -43,10 +47,10 @@ public class MapContoller : Singleton<MapContoller>
             return;
         }
 
-        int xCheckCoord = playerMoveDirection.x == 0 ? 0 : playerMoveDirection.x > 0 ? 24 : -24;
-        int yCheckCoord = playerMoveDirection.y == 0 ? 0 : playerMoveDirection.y > 0 ? 24 : -24;
+      //  int xCheckCoord = playerMoveDirection.x == 0 ? 0 : playerMoveDirection.x > 0 ? 24 : -24;
+      //  int yCheckCoord = playerMoveDirection.y == 0 ? 0 : playerMoveDirection.y > 0 ? 24 : -24;
 
-        /*
+       
 
     int[] xCheckCoord = new int[3]; // = playerMoveDirection.x == 0 ? 0 : playerMoveDirection.x > 0 ? 24 : -24;
     int[] yCheckCoord = new int[3]; // = playerMoveDirection.y == 0 ? 0 : playerMoveDirection.y > 0 ? 24 : -24;
@@ -91,43 +95,67 @@ public class MapContoller : Singleton<MapContoller>
         var chunk3 = Physics2D.OverlapCircle(_noTerrainPosition[2], _checkerRadius, _terrainMask);
 
 
-        if (!chunk1 || !chunk2 || !chunk3)
+        if (!chunk1)
             {
-                SpawnChunk();
+                SpawnChunk1();
             }
 
-        */
-
-        _noTerrainPosition = currentChunk.transform.position + new Vector3(xCheckCoord, yCheckCoord, 0);
-        
-        var chunk = Physics2D.OverlapCircle(_noTerrainPosition, _checkerRadius, _terrainMask);
-
-        if (!chunk)
+        if (!chunk2)
         {
-            SpawnChunk();
+            SpawnChunk2();
         }
+
+        if (!chunk3)
+        {
+            SpawnChunk3();
+        }
+
+
+        // _noTerrainPosition = currentChunk.transform.position + new Vector3(xCheckCoord, yCheckCoord, 0);
+
+        // var chunk = Physics2D.OverlapCircle(_noTerrainPosition, _checkerRadius, _terrainMask);
+
+        // if (!chunk)
+        // {
+        //    SpawnChunk();
+        // }
 
     }
 
-    private void SpawnChunk()
+    private void SpawnChunk1()
     {
-        latestChunk = Instantiate(_terrainChunk, _noTerrainPosition, Quaternion.identity);
-       
-        /*
-        latestChunk = Instantiate(_terrainChunk[Random.Range(0, _terrainChunk.Length)], _noTerrainPosition[1], Quaternion.identity);
-        latestChunk = Instantiate(_terrainChunk[Random.Range(0, _terrainChunk.Length)], _noTerrainPosition[2], Quaternion.identity);
-        */
+        latestChunk1 = Instantiate(_terrainChunk[Random.Range(0, _terrainChunk.Length)], _noTerrainPosition[0], Quaternion.identity);
 
+        latestChunk1.transform.SetParent(transform);
 
-        latestChunk.transform.SetParent(transform);
-        _activeChunks.Add(latestChunk);
+        _activeChunks.Add(latestChunk1);
+    }
+    private void SpawnChunk2()
+    {
+        latestChunk2 = Instantiate(_terrainChunk[Random.Range(0, _terrainChunk.Length)], _noTerrainPosition[1], Quaternion.identity);
+
+        latestChunk2.transform.SetParent(transform);
+
+        _activeChunks.Add(latestChunk2);
+    }
+    private void SpawnChunk3()
+    {
+        latestChunk3 = Instantiate(_terrainChunk[Random.Range(0, _terrainChunk.Length)], _noTerrainPosition[2], Quaternion.identity);
+
+        latestChunk3.transform.SetParent(transform);
+
+        _activeChunks.Add(latestChunk3);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         
-        Gizmos.DrawWireSphere(_noTerrainPosition, _checkerRadius);
-       
+        for (int i = 0; i<=2; i++)
+        {
+            Gizmos.DrawWireSphere(_noTerrainPosition[i], _checkerRadius);
+
+        }
+
     }
 }
