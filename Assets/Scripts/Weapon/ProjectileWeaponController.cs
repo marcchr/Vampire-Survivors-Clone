@@ -22,7 +22,7 @@ public class ProjectileWeaponController : WeaponController
             enemiesInRange = GameObject.FindGameObjectsWithTag("Enemy");
             SearchNearestEnemy();
 
-            // Vector2 targetPosition = nearestEnemy.transform.position;       //Y U ERROR
+            //Vector2 targetPosition = nearestEnemy.transform.position;       //Y U ERROR
 
 
             for (int i = 0; i < data.Amount; i++)

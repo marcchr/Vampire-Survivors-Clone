@@ -7,7 +7,6 @@ public abstract class Projectile : MonoBehaviour
     private float DamageAmount;
     private int Health;
 
-    Vector2 targetPosition;
     public void Initialize(ProjectileWeaponData data)//, Vector2 targetPosition)
     {
         DamageAmount = data.DamageAmount;
@@ -15,8 +14,7 @@ public abstract class Projectile : MonoBehaviour
         Destroy(gameObject, 5f);
 
 
-
-        StartCoroutine(MoveToTarget(data, targetPosition));
+        StartCoroutine(MoveToTarget(data));//, targetPosition));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,14 +31,15 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToTarget(ProjectileWeaponData data, Vector2 targetPosition)
+    private IEnumerator MoveToTarget(ProjectileWeaponData data)//, Vector2 targetPosition)
     {
         float time = 0;
         Vector2 startPosition = transform.position;
+        Vector2 targetPosition = new Vector2(1, 1);
         
         while (time < data.Speed)
         {
-            transform.position = Vector2.MoveTowards(startPosition, targetPosition, data.Speed*Time.deltaTime);
+            transform.position = Vector2.MoveTowards(startPosition, targetPosition, time * data.Speed);//*Time.deltaTime);
             time += Time.deltaTime;
             yield return null;
         }
