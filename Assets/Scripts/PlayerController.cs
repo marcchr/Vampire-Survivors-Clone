@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : Singleton<PlayerController>
 {
+
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _maxHealth = 100f;
     [SerializeField] Image _healthBarFill;
