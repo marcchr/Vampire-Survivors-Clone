@@ -22,6 +22,10 @@ public class PlayerController : Singleton<PlayerController>
 
 
     Vector2 _moveDirection;
+
+    public float lastHorizontalVector;
+    public float lastVerticalVector;
+    public Vector2 lastMovedVector;
     public Vector2 MoveDirection => _moveDirection;
 
     protected override void Awake()
@@ -35,6 +39,7 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         _currentHealth = _maxHealth;
+        lastMovedVector = new Vector2(1f, 0f);
     }
 
     private void Update()
@@ -51,6 +56,23 @@ public class PlayerController : Singleton<PlayerController>
         else if (_moveDirection.x > 0) 
         {
             _spriteRenderer.flipX = false;
+        }
+
+        if (_moveDirection.x != 0)
+        {
+            lastHorizontalVector = _moveDirection.x;
+            lastMovedVector = new Vector2(lastHorizontalVector, 0f);
+        }
+
+        if (_moveDirection.y != 0)
+        {
+            lastVerticalVector = _moveDirection.y;
+            lastMovedVector = new Vector2(0f, lastVerticalVector);
+        }
+
+        if (_moveDirection.x != 0 && _moveDirection.y != 0)
+        {
+            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);
         }
 
         if (Input.anyKey)

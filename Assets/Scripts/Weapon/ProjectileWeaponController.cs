@@ -10,6 +10,7 @@ public class ProjectileWeaponController : WeaponController
     public GameObject nearestEnemy;
     float distance;
     float nearestDistance = 100;
+
     public override IEnumerator WeaponAttack()
     {
         Debug.Log("Weapon Attack");
@@ -22,8 +23,8 @@ public class ProjectileWeaponController : WeaponController
             enemiesInRange = GameObject.FindGameObjectsWithTag("Enemy");
             SearchNearestEnemy();
 
-            Vector2 targetPosition = new Vector2(0, 0); //nearestEnemy.transform.position;       //Y U ERROR
-            // Vector2 targetPosition = nearestEnemy.transform.position;
+            Vector2 targetPosition = new Vector2 (transform.position.x, transform.position.y) + PlayerController.Instance.lastMovedVector*80; //nearestEnemy.transform.position;       
+            // Vector2 targetPosition = nearestEnemy.transform.position;    //// Y U ERROR
 
             for (int i = 0; i < data.Amount; i++)
             {

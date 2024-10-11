@@ -11,7 +11,7 @@ public abstract class Projectile : MonoBehaviour
     {
         DamageAmount = data.DamageAmount;
         Health = data.HitsToTake;
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 10f);
 
 
         StartCoroutine(MoveToTarget(data, targetPosition));
@@ -40,11 +40,13 @@ public abstract class Projectile : MonoBehaviour
         while (time < data.Speed)
         {
             transform.position = Vector2.MoveTowards(startPosition, targetPosition, time * data.Speed);//*Time.deltaTime);
+            transform.Rotate(new Vector3 (0,0, time + data.Speed));
+            
             time += Time.deltaTime;
             yield return null;
         }
         
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     
