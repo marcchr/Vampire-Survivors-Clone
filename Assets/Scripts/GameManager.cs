@@ -11,12 +11,16 @@ public class GameManager : Singleton<GameManager>
     float stopwatchTime;
     public TextMeshProUGUI stopwatchDisplay;
 
+    public int killCount;
+    public TextMeshProUGUI killCountText;
+
 
     [SerializeField] UnityEvent<int> _onLevelChanged;
 
     void Update()
     {
         UpdateStopwatch();
+        UpdateKillCountText();
     }
 
     private void OnEnable()
@@ -60,5 +64,10 @@ public class GameManager : Singleton<GameManager>
         int seconds = Mathf.FloorToInt(stopwatchTime % 60);
 
         stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void UpdateKillCountText()
+    {
+        killCountText.text = "Kills: "+ killCount.ToString();
     }
 }

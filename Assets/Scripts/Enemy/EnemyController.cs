@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class EnemyController : MonoBehaviour
 {
+
     public EnemyData Data;
 
     SpriteRenderer _spriteRenderer;
@@ -73,6 +75,9 @@ public class EnemyController : MonoBehaviour
         if (_currentHealth <= 0f)
         {
             StartCoroutine(DeathAnim());
+
+            GameManager.Instance.killCount++;
+
             _spawner.ReturnEnemyToPool(this);
 
             var coin = GemSpawner.Instance.GetGem();
