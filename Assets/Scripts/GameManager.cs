@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+    public float timeLimit;
+    float stopwatchTime;
+    public TextMeshProUGUI stopwatchDisplay;
+
+
     [SerializeField] UnityEvent<int> _onLevelChanged;
+
+    void Update()
+    {
+        UpdateStopwatch();
+    }
 
     private void OnEnable()
     {
@@ -31,5 +43,22 @@ public class GameManager : Singleton<GameManager>
     {
         _onLevelChanged?.Invoke(level);
         PauseGame();
+    }
+
+    void UpdateStopwatch()
+    {
+        stopwatchTime += Time.deltaTime;
+
+        UpdateStopwatchDisplay();
+
+
+    }
+
+    void UpdateStopwatchDisplay()
+    {
+        int minutes = Mathf.FloorToInt(stopwatchTime / 60);
+        int seconds = Mathf.FloorToInt(stopwatchTime % 60);
+
+        stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
