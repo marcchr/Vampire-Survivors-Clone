@@ -16,7 +16,7 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 21300000, guid: 7c7565afba23c5b4bb0d7a56b260d722, type: 3}
   <CoolDownTime>k__BackingField: 1
   <DamageAmount>k__BackingField: 1
-  <Description>k__BackingField: 
+  <Description>k__BackingField: Throw sharp spinning blades at enemies from a distance.
   <Amount>k__BackingField: 1
-  <Speed>k__BackingField: 15
+  <Speed>k__BackingField: 12
   <HitsToTake>k__BackingField: 3

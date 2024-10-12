@@ -30,5 +30,6 @@ public class GameManager : Singleton<GameManager>
     private void OnLevelChanged(int level)
     {
         _onLevelChanged?.Invoke(level);
+        PauseGame();
     }
 }

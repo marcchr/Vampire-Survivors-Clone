@@ -16,4 +16,4 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 21300000, guid: f85384580b7904f4eb82b31b71fc3568, type: 3}
   <CoolDownTime>k__BackingField: 1.5
   <DamageAmount>k__BackingField: 1
-  <Description>k__BackingField: Cuts through enemies.
+  <Description>k__BackingField: A keen-edged blade that cuts through nearby enemies.

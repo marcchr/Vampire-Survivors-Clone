@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec2a1dc3ea611b48a4ed2e07899835d, type: 3}
+  m_Name: Skeleton
+  m_EditorClassIdentifier: 
+  <EnemyPrefab>k__BackingField: {fileID: 2124555078133108751, guid: 3517f6cd3bb70cc49965cdeb0dc77c82, type: 3}
+  <Sprite>k__BackingField: {fileID: -1562079673, guid: 6887f0a1de7874f43b16d9ccc1bdc484, type: 3}
+  <MoveSpeed>k__BackingField: 2
+  <MaxHealth>k__BackingField: 5

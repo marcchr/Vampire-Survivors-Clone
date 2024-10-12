@@ -40,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
         while (time < data.Speed)
         {
             transform.position = Vector2.MoveTowards(startPosition, targetPosition, time * data.Speed);//*Time.deltaTime);
-            transform.Rotate(new Vector3 (0,0, time + data.Speed));
+            transform.Rotate(new Vector3 (0,0, (time + data.Speed)*0.2f));
             
             time += Time.deltaTime;
             yield return null;

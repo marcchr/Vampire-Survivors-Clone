@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] float _maxHealth = 5f;
+    public EnemyData Data;
 
     SpriteRenderer _spriteRenderer;
 
@@ -18,6 +17,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Transform _player;
 
     float _currentHealth;
+    float _currentMoveSpeed;
 
     
 
@@ -30,10 +30,12 @@ public class EnemyController : MonoBehaviour
        
     }
 
-    public void Initialize(Transform player, EnemySpawner spawner)
+    public void Initialize(Transform player, EnemySpawner spawner, EnemyData data)
     {
        _player = player;
        _spawner = spawner;
+
+        Data = data;
     }
 
     private void OnEnable()
@@ -41,14 +43,9 @@ public class EnemyController : MonoBehaviour
         ResetToDefault();
     }
 
-    private void Start()
-    {
-        _currentHealth = _maxHealth;
-    }
-
     private void FixedUpdate()
     {
-        _rb2D.MovePosition(Vector2.MoveTowards(_rb2D.position, _player.position, _moveSpeed * Time.fixedDeltaTime));
+        _rb2D.MovePosition(Vector2.MoveTowards(_rb2D.position, _player.position, _currentMoveSpeed * Time.fixedDeltaTime));
         // _animator.Play("enemy1_default");
 
         if (transform.position.x - _player.position.x > 0)
@@ -64,9 +61,9 @@ public class EnemyController : MonoBehaviour
 
     public void ResetToDefault()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth = Data.MaxHealth;
         _spriteRenderer.color = Color.white;
-        _moveSpeed = 2f;
+        _currentMoveSpeed = Data.MoveSpeed;
     }
 
     public void TakeDamage(float damageAmount)
@@ -94,7 +91,7 @@ public class EnemyController : MonoBehaviour
     public IEnumerator DeathAnim()
     {
         _animator.SetTrigger("death");
-        _moveSpeed = 0f;
+        _currentMoveSpeed = 0f;
         yield return new WaitForSeconds(0.4f);
         gameObject.SetActive(false);
     }

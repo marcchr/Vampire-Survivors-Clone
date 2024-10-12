@@ -7,6 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] PlayerController _player;
     [SerializeField] EnemyController _enemyPrefab;
 
+    [SerializeField] EnemyData Data;
+
     [SerializeField] float _spawnInterval;
     [SerializeField] int _enemyLimit;
 
@@ -20,17 +22,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        InstantiateEnemies();
+        InstantiateEnemies(Data);
         InvokeRepeating(nameof(SpawnEnemy), 1f, _spawnInterval);
     }
 
-    private void InstantiateEnemies()
+    private void InstantiateEnemies(EnemyData data)
     {
+        Data = data;
         for (int i = 0; i < _enemyLimit; i++)
         {
             //spawn enemies
             var enemy = Instantiate(_enemyPrefab, transform);
-            enemy.Initialize(_player.transform, this);
+            enemy.Initialize(_player.transform, this, data);
             enemy.gameObject.SetActive(false);
             _availableEnemies.Enqueue(enemy);
         }
