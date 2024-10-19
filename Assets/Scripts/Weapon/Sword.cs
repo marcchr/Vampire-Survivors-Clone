@@ -20,5 +20,11 @@ public class Sword : WeaponController
             print($"Trigger: {enemy.name}");
             enemy.TakeDamage(Data.DamageAmount);
         }
+
+        if (other.TryGetComponent<HordeController>(out var horde))
+        {
+            print($"Trigger: {horde.name}");
+            horde.TakeDamage(Data.DamageAmount);
+        }
     }
 }

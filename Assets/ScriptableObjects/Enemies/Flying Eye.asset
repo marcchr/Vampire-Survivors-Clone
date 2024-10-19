@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flying Eye
   m_EditorClassIdentifier: 
   <EnemyPrefab>k__BackingField: {fileID: 8502943695821550784, guid: 859493f1026f43043ab1843bf8079199, type: 3}
+  <HordePrefab>k__BackingField: {fileID: 0}
   <Sprite>k__BackingField: {fileID: 775032247, guid: 62b6c005164b44b4a8f88194b4537e85, type: 3}
-  <MoveSpeed>k__BackingField: 3
+  <MoveSpeed>k__BackingField: 2
   <MaxHealth>k__BackingField: 1

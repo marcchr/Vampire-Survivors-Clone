@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   <EnemyPrefab>k__BackingField: {fileID: 2124555078133108751, guid: 3517f6cd3bb70cc49965cdeb0dc77c82, type: 3}
+  <HordePrefab>k__BackingField: {fileID: 1822853810210655067, guid: 3517f6cd3bb70cc49965cdeb0dc77c82, type: 3}
   <Sprite>k__BackingField: {fileID: -1562079673, guid: 6887f0a1de7874f43b16d9ccc1bdc484, type: 3}
-  <MoveSpeed>k__BackingField: 2
-  <MaxHealth>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 5
+  <MaxHealth>k__BackingField: 3

@@ -296,14 +296,14 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 10
+      time: 30
       value: 300
       inSlope: 0
       outSlope: 0
@@ -11006,9 +11006,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1889509761}
   _enemyPrefab: {fileID: 8502943695821550784, guid: 859493f1026f43043ab1843bf8079199, type: 3}
+  _hordePrefab: {fileID: 1822853810210655067, guid: 3517f6cd3bb70cc49965cdeb0dc77c82, type: 3}
   Data: {fileID: 11400000, guid: 7de193614e6aedf48a45491ca9c08470, type: 2}
+  HordeData: {fileID: 11400000, guid: 9446e33e3f801224aa97fcdc80ecc207, type: 2}
   _spawnInterval: 1
+  _hordeSpawnInterval: 60
   _enemyLimit: 50
+  _hordeLimit: 30
+  _hordeSize: 10
 --- !u!4 &1687734934
 Transform:
   m_ObjectHideFlags: 0

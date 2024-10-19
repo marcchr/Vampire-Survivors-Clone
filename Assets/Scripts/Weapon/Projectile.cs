@@ -29,6 +29,16 @@ public abstract class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (other.TryGetComponent<HordeController>(out var horde))
+        {
+            horde.TakeDamage(DamageAmount);
+            Health--;
+            if (Health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     private IEnumerator MoveToTarget(ProjectileWeaponData data, Vector2 targetPosition)
