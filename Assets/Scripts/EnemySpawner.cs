@@ -109,21 +109,21 @@ public class EnemySpawner : MonoBehaviour
         var spawnX = Random.Range(0f, 1f);
         if (spawnX < 0.5f)
         {
-            spawnX = 0 - Random.Range(0f, 1f);
+            spawnX = 0 - Random.Range(0f, .2f);
         }
         else
         {
-            spawnX = 1 + Random.Range(0f, 1f);
+            spawnX = 1 + Random.Range(0f, .2f);
         }
 
         var spawnY = Random.Range(0f, 1f);
         if (spawnY < 0.5f)
         {
-            spawnY = 0 - Random.Range(0f, 1f);
+            spawnY = 0 - Random.Range(0f, .2f);
         }
         else
         {
-            spawnY = 1 + Random.Range(0f, 1f);
+            spawnY = 1 + Random.Range(0f, .2f);
         }
 
         var spawnPosition = _camera.ViewportToWorldPoint(new(spawnX, spawnY, 10f));
