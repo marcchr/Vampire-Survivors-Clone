@@ -13,4 +13,6 @@ public class EnemyData : ScriptableObject
     [field: SerializeField] public Sprite Sprite { get; private set; }
     [field: SerializeField] public float MoveSpeed { get; set; }
     [field: SerializeField] public float MaxHealth { get; private set; }
+    [field: SerializeField] public float GemDropChance { get; private set; }
+
 }

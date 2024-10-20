@@ -17,3 +17,4 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: -1562079673, guid: 6887f0a1de7874f43b16d9ccc1bdc484, type: 3}
   <MoveSpeed>k__BackingField: 5
   <MaxHealth>k__BackingField: 3
+  <GemDropChance>k__BackingField: 0.6

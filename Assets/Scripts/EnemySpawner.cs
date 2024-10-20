@@ -140,6 +140,21 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = spawnPosition;
             enemy.gameObject.SetActive(true);
         }
+        for (int i = 0; i < _hordeSize; i++)
+        {
+
+            var enemy = _availableHorde.Dequeue();
+            enemy.transform.position = new Vector3 (spawnPosition.x,spawnPosition.y +2);
+            enemy.gameObject.SetActive(true);
+        }
+        for (int i = 0; i < _hordeSize; i++)
+        {
+
+            var enemy = _availableHorde.Dequeue();
+            enemy.transform.position = new Vector3(spawnPosition.x, spawnPosition.y - 2);
+            enemy.gameObject.SetActive(true);
+        }
+
     }
 
 

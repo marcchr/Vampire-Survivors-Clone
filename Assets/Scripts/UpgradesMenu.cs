@@ -17,7 +17,7 @@ public class UpgradesMenu : MonoBehaviour
             upgrade.GetComponent<Button>().onClick.AddListener(() =>
             {
                 gameObject.SetActive(false);
-                GameManager.Instance.ResumeGame();
+                GameManager.Instance.EndLevelUp();
             });
             _upgrades.Add(upgrade);
         }

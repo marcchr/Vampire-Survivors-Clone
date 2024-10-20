@@ -44,6 +44,11 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
+        if (GameManager.Instance.isGameOver)
+        {
+            return;
+        }
+
         _moveDirection = new (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); 
         _moveDirection.Normalize();
 
@@ -87,6 +92,10 @@ public class PlayerController : Singleton<PlayerController>
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.isGameOver)
+        {
+            return;
+        }
         _rb2D.MovePosition(_rb2D.position + _moveDirection * _moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -95,6 +104,21 @@ public class PlayerController : Singleton<PlayerController>
         if (other.collider.CompareTag("Enemy"))
         {
             _currentHealth--;
+
+            if (_currentHealth <= 0)
+            {
+                Kill();
+            }
+        }
+    }
+
+    public void Kill()
+    {
+        if (!GameManager.Instance.isGameOver)
+        {
+            GameManager.Instance.AssignSurvivalTime();
+            GameManager.Instance.AssignEnemiesKilled();
+            GameManager.Instance.GameOver();
         }
     }
 

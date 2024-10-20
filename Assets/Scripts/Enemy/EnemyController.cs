@@ -80,8 +80,7 @@ public class EnemyController : MonoBehaviour
 
             _spawner.ReturnEnemyToPool(this);
 
-            var coin = GemSpawner.Instance.GetGem();
-            coin.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0f);
+            
         }
             
     }
@@ -98,6 +97,14 @@ public class EnemyController : MonoBehaviour
         _animator.SetTrigger("death");
         _currentMoveSpeed = 0f;
         yield return new WaitForSeconds(0.4f);
+
+
+        if (Random.value > Data.GemDropChance)
+        {
+            var coin = GemSpawner.Instance.GetGem();
+            coin.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, 0f);
+        }
+
         gameObject.SetActive(false);
     }
 }

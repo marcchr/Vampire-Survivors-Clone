@@ -12,6 +12,7 @@ public class Gem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(MoveTowardsPlayer(other.transform));
+
         }
     }
 
